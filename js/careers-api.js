@@ -6,9 +6,10 @@
 (function () {
   'use strict';
 
-  // Auto-detect localhost vs production
+  // Auto-detect localhost vs production vs external/workers preview
   const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  const API_BASE_URL = isLocal ? 'http://localhost:5000/api' : '/api';
+  const isMainDomain = window.location.hostname === 'nakigroup.com' || window.location.hostname === 'www.nakigroup.com';
+  const API_BASE_URL = isLocal ? 'http://localhost:5000/api' : (isMainDomain ? '/api' : 'https://nakigroup.com/api');
   let cachedJobs = [];
 
   // DOM Elements
